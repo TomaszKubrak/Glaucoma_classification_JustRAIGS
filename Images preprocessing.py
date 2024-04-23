@@ -3,7 +3,6 @@ import cv2
 import numpy as np
 from PIL import Image
 from tqdm import tqdm
-import warnings
 
 # The function 'trim_and_resize' was adapted from Aladdin Persson's Machine Learning Collection
 # Source: https://github.com/aladdinpersson/Machine-Learning-Collection/tree/master/ML/Kaggles/DiabeticRetinopathy/preprocess_images.py

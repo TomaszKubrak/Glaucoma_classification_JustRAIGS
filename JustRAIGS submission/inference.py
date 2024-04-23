@@ -6,8 +6,6 @@ import torch
 import torch.nn as nn
 import torch.optim
 from torchvision import transforms
-from torchvision.models import vit_l_16 
-from torchvision.transforms.functional import InterpolationMode
 import torch.nn.functional as F
 import numpy as np
 
@@ -93,7 +91,7 @@ def run():
     segmentation_model = YOLO(segmentation_model_path)
 
     
-    # # Initialize your Vision Transformer model
+    # ViT for glaucoma classification without ROI preprocessing
     glaucoma_model = torch.load('./model/ViT_pretrained.pth', map_location=device)
     glaucoma_model.heads.head = torch.nn.Linear(1024, 1)
     glaucoma_model_path = './model/ViT_RG_NO_ROI.pth'
@@ -102,7 +100,7 @@ def run():
     glaucoma_model.load_state_dict(new_state_dict)
     glaucoma_model.to(device).eval()
 
-    # #Glaucoma model ROI detected
+    # ViT for glaucoma classification with ROI preprocessing
     glaucoma_model_ROI = torch.load('./model/ViT_pretrained.pth', map_location=device)
     glaucoma_model_ROI.heads.head = torch.nn.Linear(1024, 1)
     glaucoma_model_ROI_path = './model/ViT_RG_ROI.pth'
@@ -111,7 +109,7 @@ def run():
     glaucoma_model_ROI.load_state_dict(new_state_dict_ROI)
     glaucoma_model_ROI.to(device).eval()
 
-    #Extra features model without ROI
+    # ViT for extra features classification without ROI preprocessing
     features_model = torch.load('./model/ViT_pretrained.pth', map_location=device)
     features_model.heads.head = torch.nn.Linear(1024, 10) 
     features_model_path = './model/ViT_10_NO_ROI.pth'
@@ -120,7 +118,7 @@ def run():
     features_model.load_state_dict(new_state_dict_features)
     features_model.to(device).eval()
 
-    #Extra features model ROI detected
+    # ViT for extra features classification with ROI preprocessing
     features_model_ROI = torch.load('./model/ViT_pretrained.pth', map_location=device)
     features_model_ROI.heads.head = torch.nn.Linear(1024, 10) 
     features_model_ROI_path = './model/ViT_10_ROI.pth'
