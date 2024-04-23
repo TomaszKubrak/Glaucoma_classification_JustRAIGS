@@ -44,13 +44,11 @@ if torch.cuda.device_count() > 1:
 
 model.to(device)
 
-# Define weights for BCELoss
+# Define weights and weighted BCELoss
 negative_class = (len(train_df[train_df['Final Label']==0]))
 positive_class = (len(train_df[train_df['Final Label']==1]))
 pos_weight_value = negative_class / positive_class
 pos_weight_tensor = torch.tensor([pos_weight_value],  dtype=torch.float, device=device)
-
-# Weighted BCELoss
 criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight_tensor)
 
 # Accessing parameters after applying DataParallel

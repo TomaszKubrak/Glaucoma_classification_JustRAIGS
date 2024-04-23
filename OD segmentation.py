@@ -104,7 +104,7 @@ def determine_path(base_path, eye_id):
 # Function to apply ROI on all datasets
 def process_images(dataset, model, base_path_img, save_path, size=(518, 518)):
     """
-    Processes and saves images with successful ROI segmentation .
+    Processes and saves images with successful ROI segmentation.
 
     Iterates through the dataset, checks if the image already exists in the save path, and if so, classifies as OD detected.
     If not, detects OD using YOLO, and if found, validate bbox size, crops, resizes, and saves the image.
@@ -119,6 +119,9 @@ def process_images(dataset, model, base_path_img, save_path, size=(518, 518)):
     Returns:
         Updated dataset.
     """
+    # Ensure the save_path exists
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
    
     od_detected = []
     for index, row in dataset.iterrows():
