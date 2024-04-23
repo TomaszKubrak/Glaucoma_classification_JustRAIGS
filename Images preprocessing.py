@@ -70,7 +70,7 @@ def process_and_save_images(input_path_folder, output_path_folder, output_size):
 
 if __name__ == "__main__":
     # Change the input/output directory
-    input_dir = "D:/temp/images"
-    output_dir = "D:/temp/preprocessed_img"
+    input_dir = "./images"
+    output_dir = "./preprocessed_img"
     output_size = 2000  # Update the desired output size as needed
     process_and_save_images(input_dir, output_dir, output_size)

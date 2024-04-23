@@ -6,7 +6,6 @@ import torch
 import torch.nn as nn
 import torch.optim
 from torchvision import transforms
-import torch.nn.functional as F
 import numpy as np
 
 def apply_clahe(img, clip_limit=3.0, tile_grid_size=(8, 8)):

@@ -93,7 +93,6 @@ def crop_and_resize_image(img, bbox, target_size=(518, 518)):
 
     return resized_img
 
-
 # Function to determine path of an image
 def determine_path(base_path, eye_id):
   base_path = os.path.join(base_path, eye_id)
@@ -166,17 +165,19 @@ def process_images(dataset, model, base_path_img, save_path, size=(518, 518)):
     dataset['OD'] = od_detected
     return dataset
 
-
 def main():
     # Initialize YOLO model
     model_path = './YoloV8.pt'
     model = YOLO(model_path)
 
     file_path_img = './preprocessed_img/'
-    save_path = './final_ROI_new/'
+    save_path = './ROI_images/'
+
+    # Base path for datasets
+    dataset_base_path = './Datasets/'
 
     # List of CSV files to read from
-    read_file_path_csv = [
+    input_files = [
         '10_features_no_mask_test.csv',
         '10_features_no_mask_train.csv',
         'glaucoma_no_mask_test.csv',
@@ -184,16 +185,20 @@ def main():
     ]
 
     # Corresponding output file names
-    save_file_path_csv = [
+    output_files = [
         '10_features_masks_test.csv',
         '10_features_masks_train.csv',
         'glaucoma_masks_test.csv',
         'glaucoma_masks_train.csv'
     ]
 
-    for input_csv, output_csv in zip(read_file_path_csv, save_file_path_csv):
-        df_temp = pd.read_csv(input_csv)
-        processed_dataset = process_images(df_temp, model, file_path_img, save_path)
+    # Loop over the file lists, combining with the base path
+    for input_file, output_file in zip(input_files, output_files):
+        input_csv = f"{dataset_base_path}{input_file}"
+        output_csv = f"{dataset_base_path}{output_file}"
+        
+        df_temp = pd.read_csv(input_csv)  # Read the DataFrame
+        processed_dataset = process_images(df_temp, model, file_path_img, save_path)  # Process images
         segmentation_dataset = processed_dataset[processed_dataset["OD"] == 1]  # Filter rows where OD was detected
         segmentation_dataset.drop("OD", axis=1, inplace=True)  # Drop the 'OD' column
         segmentation_dataset.reset_index(drop=True, inplace=True)  # Reset the DataFrame index
