@@ -1,12 +1,12 @@
+# The function 'trim_and_resize' was adapted from Aladdin Persson's Machine Learning Collection
+# Source: https://github.com/aladdinpersson/Machine-Learning-Collection/tree/master/ML/Kaggles/DiabeticRetinopathy/preprocess_images.py
+# The original source is licensed under the MIT License.
+
 import os
 import cv2
 import numpy as np
 from PIL import Image
 from tqdm import tqdm
-
-# The function 'trim_and_resize' was adapted from Aladdin Persson's Machine Learning Collection
-# Source: https://github.com/aladdinpersson/Machine-Learning-Collection/tree/master/ML/Kaggles/DiabeticRetinopathy/preprocess_images.py
-# The original source is licensed under the MIT License.
 
 def apply_clahe(img, clip_limit=3.0, tile_grid_size=(8, 8)):
     """Applying CLAHE contrast enhancement on each color channel separately."""

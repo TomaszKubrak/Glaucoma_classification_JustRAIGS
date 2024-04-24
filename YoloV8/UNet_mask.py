@@ -1,11 +1,10 @@
+# This code was adapted from: https://github.com/Paresh-shahare/Optic-Disc-Segmentation
+# It was used to obtaine first masks since JustRAIGS dataset doesn't provide masks of optic discs
 
 import os
 import cv2
 from keras.models import load_model
 import numpy as np
-
-# This code was adapted from: https://github.com/Paresh-shahare/Optic-Disc-Segmentation
-# It was used to obtaine first masks since JustRAIGS datasets doesn't provide masks of optic discs
 
 ##### Adjust this section as needed #####
 model_path = './UNetW_final.h5'
