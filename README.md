@@ -3,7 +3,7 @@ Glaucoma and related diagnostic features classification for [JustRAIGS grand cha
 
 Details of the project are yet to be published.
 
-Soon algorithm will be available to use on [Grand Challenge website](https://grand-challenge.org/algorithms/justraigs_v1/)
+The algorithm is available to use on [Grand Challenge website](https://grand-challenge.org/algorithms/justraigs_v1/)
 
 
 ## Acknowledgments
