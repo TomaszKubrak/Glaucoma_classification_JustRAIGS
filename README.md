@@ -1,7 +1,7 @@
 # Glaucoma classification
 Glaucoma and related diagnostic features classification for [JustRAIGS grand challenge](https://justraigs.grand-challenge.org/justraigs/).
 
-Details of the project are yet to be published.
+For details of the project see [ISBI 2024 paper](https://github.com/TomaszKubrak/Glaucoma_classification_JustRAIGS/blob/main/ISBI24_paper_1625_camera_ready.pdf).
 
 The algorithm is available to use on [Grand Challenge website](https://grand-challenge.org/algorithms/justraigs_v1/)
 
